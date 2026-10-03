@@ -20,6 +20,13 @@ body::before
     z-index: -2;
     pointer-events: none;
 }
+@font-face {
+    font-family: 'Pacifico';
+    src: url('fonts/Pacifico-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 .star
 {
     position: absolute;
@@ -343,6 +350,7 @@ body > .letter.expand .text .p12
     font-size: 6vw;
     text-align: center;
     margin: 5vh auto 0; 
+     font-family: 'Pacifico', cursive;
 }
 body > .letter.expand .text .p12
 {
@@ -357,6 +365,7 @@ body > .letter.expand .text .p23
     font-size: 6vw;
     text-align: center;
     margin: 5vh auto 0; 
+    font-family: 'Pacifico', cursive;
 }
 body > .letter.expand .text .p22,
 body > .letter.expand .text .p23
@@ -370,15 +379,18 @@ body > .letter.expand .text .p31
     font-size: 6vw;
     text-align: center;
     margin: 5vh auto 0; 
+    font-family: 'Pacifico', cursive;
 }
 body > .letter.expand .text .p1,
-body > .letter.expand .text .p2
+body > .letter.expand .text .p2,
+body > .letter.expand .text .p3
 {
     display: block; 
     color: black;
     font-size: 6vw;
     text-align: center;
-    margin: 5vh auto 0; 
+    margin: 5vh auto 0;
+    font-family: 'Pacifico', cursive; 
 }
 .buttons {
     display: flex;
@@ -510,6 +522,7 @@ body > .letter.expand .text .p2
     font-size: 1rem;
     transition: background 0.2s, color 0.2s;
     height: 15vh;
+    font-family: 'Pacifico', cursive;
 }
 .place:hover,
 .place.selected
