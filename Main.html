@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, 
+    initial-scale=1.0">
+    <title>Falling Stars</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+        <script>
+        function stars()
+        {
+            let e = document.createElement('img');
+            e.src = 'flower.png';
+            e.setAttribute('class','star');
+            document.body.appendChild(e);
+            e.style.left = Math.random() * + innerWidth + 'px'; /*умножение рандома на ширину для появления звезд*/
+
+            let duration = Math.random() * 6;   /*длительность анимации*/
+
+            e.style.width = '50px';  /*размер от 12 до 24 px*/
+            e.style.animationDuration = 1 ;
+
+            setTimeout(function(){
+                document.body.removeChild(e);   /*удаление звезд через 5 сек*/
+            },5000)
+        }
+
+        setInterval(function(){     /*создание звезд каждые 0,01 сек*/
+            stars()
+        },2000)
+    </script>
+
+    <div class="wrapper">
+        <div class="envelope">
+            <div class="letter">
+                <div class="text">
+
+                    <div class="slides">  
+
+                        <div class="slide active" data-type="simple">
+                            <img src="kat.jpg" class="letter-img">
+                            <p class="p11">Ты пойдешь со мной</p>
+                            <p class="p12">на свидание?</p>
+                        </div>
+
+                        <div class="slide" data-type="simple">
+                            <img src="kat2.jpg" class="letter-img1">
+                            <p class="p21">Подожди, ты</p>
+                            <p class="p22">действительно</p>
+                            <p class="p23">сказала да?</p>
+                        </div>
+
+                        <div class="slide" data-type="choice">
+                            <p class="p31">Куда пойдем?</p>
+                            <div class="places">
+                                <button class="place" data-place="Кофейня">Кофейня</button>
+                                <button class="place" data-place="Кино">Кино</button>
+                                <button class="place" data-place="Парк">Парк</button>
+                                <button class="place" data-place="Ресторан">Ресторан</button>
+                                <button class="place" data-place="Музей">Музей</button>
+                                <button class="place" data-place="Заброшка-крыша">Заброшка-крыша</button>
+                            </div>
+                        </div>
+
+                        <div class="slide" data-type="datetime">
+                            <p class="p31">Когда тебе удобно?</p>
+                            <input type="date" class="date-input">
+                            <input type="time" class="time-input" step="60">
+                            <button class="btn btn-confirm" type="button" disabled>Подтвердить</button>
+                        </div>
+
+                        <div class="buttons" id="main-buttons">
+                            <button class="btn btn-yes" type="button">Да</button>
+                            <div class="btn-no-wrap">
+                                <button class="btn btn-no"  type="button">Нет</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>   
+            </div>
+        </div>
+        <div class="heart1"></div>
+        <div class="heart2"></div>
+        <div class="heart3"></div>
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>

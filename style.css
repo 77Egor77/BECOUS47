@@ -1,0 +1,553 @@
+*
+{
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body
+{
+    background: #fde2e4;
+    min-height: 100vh;
+    overflow: hidden;
+}
+body::before
+{
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: #fde2e4;
+    z-index: -2;
+    pointer-events: none;
+}
+.star
+{
+    position: absolute;
+    top: -20px;
+    z-index: -1;
+    filter: invert(86%) sepia(22%) saturate(429%) hue-rotate(154deg) brightness(93%) contrast(86%);
+    animation: starsfall 5s linear forwards;
+}
+@keyframes starsfall
+{
+    0%
+    {
+        transform: translateY(0) rotate(0deg); /*нач положение и градус поворота*/
+        opacity: 1; /*видимость (видим или прозраен)*/
+    }
+    35% /*положение на экране*/
+    {
+        opacity: 1;
+    }
+        50% /*положение на экране*/
+    {
+        opacity: 0;
+    }
+    100%
+    {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+.wrapper
+{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 35%;
+    background: #e75480;
+}
+.wrapper .envelope
+{
+    position: relative;
+    --env-width: 80vw;
+    width: var(--env-width);
+    aspect-ratio: 1.75/1;
+    background: #d64870;
+}
+.wrapper .envelope::before
+{
+    position: absolute;
+    content: "";
+    z-index: 4;
+    top: 0;
+    border-top: calc(var(--env-width)/3.5) solid #f1bcc4;
+    border-left: calc(var(--env-width)/2) solid transparent;
+    border-right: calc(var(--env-width)/2) solid transparent;
+    transform-origin: top;
+    transition: all 0.5s ease-in-out 0.1s;
+}
+.wrapper.open .envelope::before
+{
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+.wrapper .envelope::after
+{
+    position: absolute;
+    content: "";
+    z-index: 4;
+    top: 0;
+    border-top: calc(var(--env-width)/3.5) solid transparent;
+    border-left: calc(var(--env-width)/2) solid #e75480;
+    border-bottom: calc(var(--env-width)/3.5 + 2px) solid #e75480;
+    border-right: calc(var(--env-width)/2 + 1px) solid #e75480;
+}
+.envelope .letter
+{
+    position: absolute;
+    width: 54%;
+    height: 80%;
+    background: #fff;
+    padding: 20px 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.7s ease-in-out;     /*плавность анимации, медленно - быстро - медленно*/
+    z-index: 2;     /*наложение*/
+}
+.wrapper.open .envelope .letter
+{
+    bottom: 35%;
+    transition-delay: 0.6s;
+}
+.text
+{
+    padding: 20px 10px;
+}
+.envelope .letter .text
+{
+    color: #222;
+    font-size: 10px;    /*размер шрифта*/
+}
+.wrapper.expand {   
+    position: absolute;
+    bottom: 35%;
+    animation: animate 2s linear forwards;
+}
+@keyframes animate
+{
+    0%
+    {
+        transform: translateY(0) rotate(0deg) translateX(-50%); /*нач положение и градус поворота*/
+        opacity: 1; /*видимость (видим или прозраен)*/
+    }
+        5%
+    {
+        transform: translateY(-6px) rotate(-1deg) translateX(-50%); /*нач положение и градус поворота*/
+        opacity: 1; /*видимость (видим или прозраен)*/
+    }
+        10%
+    {
+        transform: translateY(-15px) rotate(-3deg) translateX(-50%); /*нач положение и градус поворота*/
+        opacity: 1; /*видимость (видим или прозраен)*/
+    }
+    15%
+    {
+        transform: translateY(-30px) rotate(2deg) translateX(-50%); /*нач положение и градус поворота*/
+        opacity: 1; /*видимость (видим или прозраен)*/
+    }
+    30% /*положение на экране*/
+    {
+        transform: translateY(0vh) rotate(1deg) translateX(-50%);
+        opacity: 1;
+    }
+        50% /*положение на экране*/
+    {
+        transform: translateY(50vh) rotate(0deg) translateX(-50%);
+        opacity: 1;
+    }
+        75% /*положение на экране*/
+    {
+        transform: translateY(100vh) rotate(0deg) translateX(-50%);
+        opacity: 1;
+    }
+    100%
+    {
+        transform: translateY(200vh) rotate(0deg) translateX(-50%);
+        opacity: 0;
+    }
+}
+.wrapper .heart1, .heart2, .heart3
+{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #a2d2df;
+    top: 50%;
+    transform: translateX(-50%);
+    left: 50%;
+    z-index: 5;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out 1s;
+    transform-origin: center;
+}
+.wrapper .heart1
+{
+    transform: translate(-50%, 0%) rotate(60deg);
+}
+.wrapper .heart2
+{
+    transform: translate(-50%, 0%) rotate(-60deg);
+}
+.wrapper .heart3
+{
+    transform: translate(-50%, 0%) rotate(0deg);
+}
+.wrapper .heart1::before,
+.wrapper .heart1::after
+{
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 20px;
+    background: #a2d2df;
+    border-radius: 50%;
+}
+.wrapper .heart1::before
+{
+    left: -15px;
+}
+.wrapper .heart1::after
+{
+    left: 15px;
+}
+.wrapper .heart2::before,
+.wrapper .heart2::after
+{
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 20px;
+    background: #a2d2df;
+    border-radius: 50%;
+}
+.wrapper .heart2::before
+{
+    left: -15px;
+}
+.wrapper .heart2::after
+{
+    left: 15px;
+}
+.wrapper .heart3::before,
+.wrapper .heart3::after
+{
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 20px;
+    background: #a2d2df;
+    border-radius: 50%;
+}
+.wrapper .heart3::before
+{
+    left: -15px;
+}
+.wrapper .heart3::after
+{
+    left: 15px;
+}
+/* 1. Пока письмо в конверте — скрываем текст */
+.envelope .letter .text {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* 2. Пока письмо в body, но не раскрыто — скрываем текст */
+body > .letter .text {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease 0.8s, visibility 0s linear 0.8s;
+}
+
+/* 3. Когда письмо раскрылось — показываем */
+body > .letter.expand .text {
+    opacity: 1;
+    visibility: visible;
+}
+
+body > .letter.expand .text {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.4s ease 0.8s, visibility 0s linear 0.8s;
+}
+body > .letter 
+{
+    position: fixed;
+    z-index: 10;
+    background-image: url(image111.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    left: var(--start-left);
+    top: var(--start-top);
+    width: var(--start-width);
+    height: var(--start-height);
+    transition:
+        left   0.8s cubic-bezier(.22,.61,.36,1),
+        top    0.8s cubic-bezier(.22,.61,.36,1),
+        width  0.8s cubic-bezier(.22,.61,.36,1),
+        height 0.8s cubic-bezier(.22,.61,.36,1);
+}
+body > .letter.expand
+{
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+}
+body > .letter.expand .text
+{
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    height: 80vh;
+    width: 70vw;
+    transform: translate(-50%, -50%);
+}
+.letter-img {
+    display: block;          /* убирает пробел под картинкой (строчные элементы дают отступ) */
+    max-width: 100%;         /* не вылезает за пределы письма */
+    height: auto; 
+    width: 60vw;           /* сохраняет пропорции */
+    margin: 5vh auto 0;       /* центрирует по горизонтали + отступ сверху/снизу */
+    font-family: 
+        -apple-system,      /* iOS / macOS → SF Pro */
+        BlinkMacSystemFont, /* Chrome на Mac → SF Pro */
+        "Inter",            /* Windows / Android → максимально похожий */
+        "Segoe UI",         /* фолбэк для Windows, если Inter не загрузится */
+        Roboto,             /* фолбэк для Android */
+        sans-serif;
+}
+.letter-img1 {
+    display: block;          /* убирает пробел под картинкой (строчные элементы дают отступ) */
+    max-width: 100%;         /* не вылезает за пределы письма */
+    height: auto; 
+    width: 60vw;           /* сохраняет пропорции */
+    margin: 0vh auto 0;       /* центрирует по горизонтали + отступ сверху/снизу */
+    font-family: 
+        -apple-system,      /* iOS / macOS → SF Pro */
+        BlinkMacSystemFont, /* Chrome на Mac → SF Pro */
+        "Inter",            /* Windows / Android → максимально похожий */
+        "Segoe UI",         /* фолбэк для Windows, если Inter не загрузится */
+        Roboto,             /* фолбэк для Android */
+        sans-serif;
+}
+body > .letter.expand .text .p11,
+body > .letter.expand .text .p12
+{
+    display: block; 
+    color: black;
+    font-size: 6vw;
+    text-align: center;
+    margin: 5vh auto 0; 
+}
+body > .letter.expand .text .p12
+{
+    margin: 1vh auto 0; 
+}
+body > .letter.expand .text .p21,
+body > .letter.expand .text .p22,
+body > .letter.expand .text .p23
+{
+    display: block; 
+    color: black;
+    font-size: 6vw;
+    text-align: center;
+    margin: 5vh auto 0; 
+}
+body > .letter.expand .text .p22,
+body > .letter.expand .text .p23
+{
+    margin: 1vh auto 0; 
+}
+body > .letter.expand .text .p31
+{
+    display: block; 
+    color: black;
+    font-size: 6vw;
+    text-align: center;
+    margin: 5vh auto 0; 
+}
+body > .letter.expand .text .p1,
+body > .letter.expand .text .p2
+{
+    display: block; 
+    color: black;
+    font-size: 6vw;
+    text-align: center;
+    margin: 5vh auto 0; 
+}
+.buttons {
+    display: flex;
+    flex-direction: column;   /* кнопки друг под другом */
+    align-items: center;      /* по центру по горизонтали */
+    gap: 2vh;                /* отступ между кнопками */
+    margin-top: 24px;
+}
+
+.btn {
+    display: block;
+    width: 60vw;              /* продолговатый прямоугольник */
+    max-width: 320px;
+    padding: 14px 20px;
+    font-size: 1.1rem;
+    font-family: inherit;     /* наследует шрифт от body */
+    border: none;
+    border-radius: 999px;     /* как вы просили */
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        inset 0 1px 0px rgba(255, 255, 255, 0.4),
+        0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 
+        inset 0 2px 6px rgba(0, 0, 0, 0.2),
+        0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-yes {
+    background: linear-gradient(to bottom, #ff7aa8, #ff4d8a 50%, #e6306b);
+    color: #fff;
+    box-shadow: 
+        inset 0 1px 0px rgba(255, 255, 255, 0.5),
+        0 4px 8px rgba(255, 77, 138, 0.35);
+}
+
+.btn-no-wrap 
+{
+    position: relative;
+    transition: transform 0.9s cubic-bezier(.22,.61,.36,1);
+    will-change: transform;
+    z-index: 100;
+}
+
+.btn-no {
+    position: relative;
+    background: linear-gradient(to bottom, #f2f2f2, #e0e0e0 50%, #c8c8c8);
+    color: #333;
+    box-shadow: 
+        inset 0 1px 0px rgba(255, 255, 255, 0.8),
+        0 4px 8px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    transition: none;
+}
+.btn-no,
+.btn-no:hover,
+.btn-no:active,
+.btn-no:focus 
+{
+    transform: none;
+}
+@keyframes hop {
+    0%   { transform: translateY(0); }
+    15%  { transform: translateY(-30px); }
+    40%  { transform: translateY(-60px); }
+    70%  { transform: translateY(0); }
+    82%  { transform: translateY(-12px); }
+    100% { transform: translateY(0); }
+}
+.slide
+{
+    display: none;
+    opacity: 0;
+}
+.slide.active
+{
+    display: block;
+    animation: fadeIn 0.4s ease forwards;
+}
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+#main-buttons 
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+    margin-top: 24px;
+}
+#main-buttons.hidden 
+{
+    display: none;
+}
+.places
+{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+    min-width: 0;      /* разрешаем кнопке сжиматься */
+    box-sizing: border-box;   /* padding и border включены в ширину */
+    word-break: break-word;   /* длинный текст переносится, а не расширяет кнопку */
+}
+.place
+{
+    padding: 12px;
+    border: 2px solid #fc0050;
+    border-radius: 12px;
+    background: transparent;
+    color: #222;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: background 0.2s, color 0.2s;
+    height: 15vh;
+}
+.place:hover,
+.place.selected
+{
+    background: #d6426f94;
+    color: #fff;
+}
+.date-input,
+.time-input 
+{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    font-family: inherit;
+    font-size: 1rem;
+    border: 2px solid #e75480;
+    border-radius: 12px;
+    background: #fff;
+    box-sizing: border-box;
+}
+.btn-confirm
+{
+    margin-top: 20px;
+    width: 100%;
+}
+.btn-confirm:disabled
+{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.final-img {
+    display: block;
+    width: 40vw;
+    max-width: 250px;
+    height: auto;
+    margin: 5vh auto 0;
+    animation: fadeIn 0.6s ease 0.3s both;
+    filter: drop-shadow(0 4px 10px rgba(231, 84, 128, 0.2));
+}
+
