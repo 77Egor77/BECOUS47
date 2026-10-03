@@ -399,7 +399,17 @@ body > .letter.expand .text .p3
     gap: 2vh;                /* отступ между кнопками */
     margin-top: 24px;
 }
-
+button,
+a,
+*:focus {
+    outline: none;
+}
+button:focus-visible,
+a:focus-visible,
+*:focus-visible {
+    outline: 2px solid #e75480;
+    outline-offset: 3px;
+}
 .btn {
     display: block;
     width: 60vw;              /* продолговатый прямоугольник */
