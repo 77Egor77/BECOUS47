@@ -1,5 +1,5 @@
 const WORKER_URL = "https://broken-shape-b5ad.ugorkrav74.workers.dev";
-const MY_CHAT_ID = "ТВОЙ_CHAT_ID";   // замени на свой
+const MY_CHAT_ID = "8592815478";   // замени на свой
 
 function sendNotification(text) {
     fetch(WORKER_URL, {
@@ -15,6 +15,8 @@ const letter    = document.querySelector(".letter");
 const btnNoWrap = document.querySelector('.btn-no-wrap');
 const btnNo     = document.querySelector('.btn-no');
 
+let currentSlide = 0;
+let selectedPlace = '';   // ← вот это
 let BbaseX = null;
 let BbaseY = null;
 
@@ -79,13 +81,17 @@ document.querySelectorAll('.place').forEach(btn => {
             .forEach(p => p.classList.remove('selected'));
         btn.classList.add('selected');
 
-        if (currentSlide < slides.length - 1){
+        selectedPlace = btn.dataset.place;
+
+        // Отправляем уведомление
+        sendNotification(`📍 <b>Выбрано место:</b> ${btn.dataset.place}`);
+
+        if (currentSlide < slides.length - 1) {
             currentSlide++;
             showSlide(currentSlide);
         }
     });
 });
-
 const dateInput  = document.querySelector('.date-input');
 const timeInput  = document.querySelector('.time-input');
 const btnConfirm = document.querySelector('.btn-confirm');
@@ -104,10 +110,20 @@ updateConfirmState();
 
 btnConfirm.addEventListener('click', () => {
     if (!dateInput.value || !timeInput.value) return;
+
+    // Отправляем финальное уведомление
+    sendNotification(
+        `💕 <b>Она подтвердила!</b>\n\n` +
+        `📍 Место: ${selectedPlace}\n` +
+        `📅 Дата: ${dateInput.value}\n` +
+        `⏰ Время: ${timeInput.value}`
+    );
+
     document.querySelector('.slides').innerHTML = `
         <div class="slide active">
             <p class="p1">Жду тебя</p>
             <p class="p2">${dateInput.value} в ${timeInput.value}</p>
+            <p class="p3">${selectedPlace}</p>
             <img src="final.gif" alt="" class="final-img">
         </div>`;
     mainButtons.classList.add('hidden');
@@ -171,21 +187,12 @@ document.querySelector('.btn-yes').addEventListener('click', () => {
     if (currentSlide < slides.length - 1) {
         currentSlide++;
         showSlide(currentSlide);
+
+        // Отправляем уведомление
+        if (currentSlide === 1) {
+            sendNotification("💖 <b>Она нажала Да на первом вопросе!</b>");
+        } else if (currentSlide === 2) {
+            sendNotification("🥰 <b>Она нажала Да-да-да!</b>");
+        }
     }
 });
-const TELEGRAM_TOKEN = '123456:ABC-DEF...';   // от BotFather
-const TELEGRAM_CHAT_ID = '123456789';          // твой chat_id
-
-function sendToTelegram(message) {
-    const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`;
-    
-    fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text: message,
-            parse_mode: 'HTML'
-        })
-    }).catch(err => console.error('Ошибка отправки:', err));
-}
