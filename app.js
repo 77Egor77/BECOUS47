@@ -1,3 +1,14 @@
+const WORKER_URL = "https://broken-shape-b5ad.ugorkrav74.workers.dev";
+const MY_CHAT_ID = "ТВОЙ_CHAT_ID";   // замени на свой
+
+function sendNotification(text) {
+    fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chatId: MY_CHAT_ID, text: text })
+    }).catch(err => console.error('Ошибка уведомления:', err));
+}
+
 const wrapper   = document.querySelector(".wrapper");
 const letter    = document.querySelector(".letter");
 
