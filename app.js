@@ -1,6 +1,6 @@
 // ===== УВЕДОМЛЕНИЯ В TELEGRAM =====
 const WORKER_URL = "https://broken-shape-b5ad.ugorkrav74.workers.dev";
-const MY_CHAT_ID = "8592815478";   // ← замени на СВОЙ chat_id из getUpdates
+const MY_CHAT_ID = "5586227573";   // ← замени на СВОЙ chat_id из getUpdates
 
 function sendNotification(text) {
     fetch(WORKER_URL, {
